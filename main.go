@@ -16,9 +16,9 @@ import (
 
 	"gopkg.in/yaml.v2"
 
-	"github.com/mhlias/tholos/aws_helper"
-	"github.com/mhlias/tholos/tf_helper"
-	"github.com/mhlias/tholos/tholos"
+	"github.com/jamieibbs/tholos/aws_helper"
+	"github.com/jamieibbs/tholos/tf_helper"
+	"github.com/jamieibbs/tholos/tholos"
 )
 
 type conf struct {
@@ -64,6 +64,8 @@ func main() {
 	initPtr := flag.Bool("init", false, "Initialize project S3 bucket state")
 	modulesPtr := flag.Bool("u", false, "Fetch and update modules from remote repo")
 	outputsPtr := flag.Bool("o", false, "Display Terraform outputs")
+	destroyplanPtr := flag.Bool("destroyplan", false, "Displays the plan a distroy will run")
+	destroyPtr := flag.Bool("destroy", false, "Destroys the terraform resources used, DO NOT use in production")
 	envPtr := flag.String("e", "", "Terraform state environment to use")
 	flag.Var(&targetsTF, "t", "Terraform resources to target only, (-t resourcetype.resource resourcetype2.resource2)")
 
@@ -74,7 +76,7 @@ func main() {
 		Tf_modules_dir:      "tfmodules",
 	}
 
-	if !*planPtr && !*initPtr && !*modulesPtr && !*outputsPtr && !*applyPtr {
+	if !*planPtr && !*initPtr && !*modulesPtr && !*outputsPtr && !*applyPtr && !*destroyplanPtr && !*destroyPtr {
 		fmt.Println("Please provide one of the following parameters:")
 		flag.PrintDefaults()
 		os.Exit(0)

@@ -4,7 +4,7 @@ import (
     "fmt"
     "log"
 
-    "github.com/mhlias/tholos/tholos"
+    "github.com/jamieibbs/tholos/tholos"
 )
 
 func (c *Config) DestroyPlan(tholos_conf *tholos.Tholos_config, parallelism int16) {
